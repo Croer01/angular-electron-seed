@@ -4,22 +4,17 @@ Is a seed to help me create cross platform apps using Angular (2).
 
 #Installation
 
-Install Node.js (high recommend v6.6.0 above) and [nvm](http://nvm.sh/) to manage multiple Node versions
+1. Install Node.js (high recommend v6.6.0 above) and [nvm](http://nvm.sh/) to manage multiple Node versions
 
-Execute next command in root of your project.
-
-`npm install`
+3. Execute next command in root of your project: `npm install`
 
 #Use Gulp
 
 This seed use Gulp to automatize repetitive tasks. This is the list of commands:
 
-- **ts**: transpile TypeScript.
-- **templates**: move all templates to electron detect.
-- **clean**: remove folders used by Gulp tasks.
-- **build**: generate dist folder used by electron app.
 - **app:live-reload**: this task automaticaly refresh dist folder if any original ts or html file change (ideal for develop) and rerun electron application.
 - **app:run**: this task generate dist folder and run electron application.
+- **app:build**: build application to distribute, at the moment only built to host OS.
 
 
 #Run app
