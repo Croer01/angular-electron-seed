@@ -13,7 +13,6 @@ function createWindow() {
     mainWindow.loadURL(`file://${__dirname}/index.html`);
 
     // Open the DevTools.
-    mainWindow.webContents.on('devtools-opened', mainWindow.focus);
     ipcMain.on("toggle-devtools", (event, arg) => {
         mainWindow.webContents.toggleDevTools();
     });
