@@ -6,6 +6,7 @@ var runElectron = require('gulp-run-electron');
 var packager = require('electron-packager');
 var util = require('gulp-util');
 var slash = require('slash');
+var sass = require("gulp-sass");
 
 var paths = {
     src: "src",
@@ -23,8 +24,14 @@ gulp.task('ts', function () {
         .pipe(gulp.dest(paths.dist));
 });
 
+gulp.task('sass', function () {
+    return gulp.src(paths.src + "/**/*.scss")
+        .pipe(sass())
+        .pipe(gulp.dest(paths.dist));
+});
+
 gulp.task('templates', function () {
-    return gulp.src([paths.src + "/**/*.html"])
+    return gulp.src(paths.src + "/**/*.html")
         .pipe(gulp.dest(paths.dist))
 });
 
@@ -37,11 +44,12 @@ gulp.task('clean:release', function () {
     del.sync([paths.release]);
 });
 
-gulp.task('build', gulpSequence('clean', ['templates', 'ts']));
+gulp.task('build', gulpSequence('clean', ['templates', 'ts','sass']));
 
 gulp.task('app:live-reload', ['build'], function () {
     gulp.watch(paths.src + '/**/*.ts', ['ts', runElectron.rerun]);
     gulp.watch(paths.src + '/**/*.html', ['templates', runElectron.rerun]);
+    gulp.watch(paths.src + '/**/*.scss', ['sass', runElectron.rerun]);
     return runElectronApp();
 });
 
